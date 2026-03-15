@@ -1,0 +1,41 @@
+{
+  "protocol_uri": "vless://{{UUID}}@{{HOST}}:{{PORT}}?type=tcp&security=reality&sni={{SNI}}&fp={{FINGERPRINT}}&pbk={{PUBLIC_KEY}}&sid={{SHORT_ID}}&flow=xtls-rprx-vision#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "vless",
+    "server": "{{HOST}}",
+    "port": {{PORT}},
+    "uuid": "{{UUID}}",
+    "network": "tcp",
+    "tls": true,
+    "udp": true,
+    "flow": "xtls-rprx-vision",
+    "servername": "{{SNI}}",
+    "reality-opts": {
+      "public-key": "{{PUBLIC_KEY}}",
+      "short-id": "{{SHORT_ID}}"
+    },
+    "client-fingerprint": "{{FINGERPRINT}}"
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "vless",
+    "server": "{{HOST}}",
+    "server_port": {{PORT}},
+    "uuid": "{{UUID}}",
+    "flow": "xtls-rprx-vision",
+    "tls": {
+      "enabled": true,
+      "server_name": "{{SNI}}",
+      "utls": {
+        "enabled": true,
+        "fingerprint": "{{FINGERPRINT}}"
+      },
+      "reality": {
+        "enabled": true,
+        "public_key": "{{PUBLIC_KEY}}",
+        "short_id": "{{SHORT_ID}}"
+      }
+    }
+  }
+}

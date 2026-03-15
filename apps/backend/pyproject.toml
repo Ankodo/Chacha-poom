@@ -21,6 +21,7 @@ dependencies = [
     "structlog>=24.4.0",
     "python-multipart>=0.0.18",
     "nanoid>=2.0.0",
+    "pyyaml>=6.0.0",
 ]
 
 [project.optional-dependencies]

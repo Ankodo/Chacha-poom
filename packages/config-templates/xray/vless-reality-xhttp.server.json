@@ -1,0 +1,34 @@
+{
+  "inbounds": [
+    {
+      "tag": "{{INBOUND_TAG}}",
+      "listen": "0.0.0.0",
+      "port": {{PORT}},
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "{{REALITY_DEST}}",
+          "xver": 0,
+          "serverNames": {{REALITY_SERVER_NAMES}},
+          "privateKey": "{{REALITY_PRIVATE_KEY}}",
+          "shortIds": {{REALITY_SHORT_IDS}}
+        },
+        "xhttpSettings": {
+          "path": "{{PATH}}",
+          "mode": "auto"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls", "quic"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "protocol_uri": "vless://{{UUID}}@{{HOST}}:{{PORT}}?type=xhttp&security=reality&sni={{SNI}}&fp={{FINGERPRINT}}&pbk={{PUBLIC_KEY}}&sid={{SHORT_ID}}&path={{PATH}}&mode=auto#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "vless",
+    "server": "{{HOST}}",
+    "port": {{PORT}},
+    "uuid": "{{UUID}}",
+    "network": "xhttp",
+    "tls": true,
+    "udp": true,
+    "servername": "{{SNI}}",
+    "xhttp-opts": {
+      "path": "{{PATH}}",
+      "mode": "auto"
+    },
+    "reality-opts": {
+      "public-key": "{{PUBLIC_KEY}}",
+      "short-id": "{{SHORT_ID}}"
+    },
+    "client-fingerprint": "{{FINGERPRINT}}"
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "vless",
+    "server": "{{HOST}}",
+    "server_port": {{PORT}},
+    "uuid": "{{UUID}}",
+    "flow": "",
+    "transport": {
+      "type": "httpupgrade",
+      "path": "{{PATH}}"
+    },
+    "tls": {
+      "enabled": true,
+      "server_name": "{{SNI}}",
+      "utls": {
+        "enabled": true,
+        "fingerprint": "{{FINGERPRINT}}"
+      },
+      "reality": {
+        "enabled": true,
+        "public_key": "{{PUBLIC_KEY}}",
+        "short_id": "{{SHORT_ID}}"
+      }
+    }
+  }
+}

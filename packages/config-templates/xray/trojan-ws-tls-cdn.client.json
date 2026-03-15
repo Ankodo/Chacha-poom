@@ -1,0 +1,43 @@
+{
+  "protocol_uri": "trojan://{{PASSWORD}}@{{CDN_DOMAIN}}:443?type=ws&security=tls&sni={{CDN_DOMAIN}}&fp={{FINGERPRINT}}&host={{CDN_DOMAIN}}&path={{WS_PATH}}#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "trojan",
+    "server": "{{CDN_DOMAIN}}",
+    "port": 443,
+    "password": "{{PASSWORD}}",
+    "network": "ws",
+    "tls": true,
+    "udp": true,
+    "sni": "{{CDN_DOMAIN}}",
+    "ws-opts": {
+      "path": "{{WS_PATH}}",
+      "headers": {
+        "Host": "{{CDN_DOMAIN}}"
+      }
+    },
+    "client-fingerprint": "{{FINGERPRINT}}"
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "trojan",
+    "server": "{{CDN_DOMAIN}}",
+    "server_port": 443,
+    "password": "{{PASSWORD}}",
+    "transport": {
+      "type": "ws",
+      "path": "{{WS_PATH}}",
+      "headers": {
+        "Host": "{{CDN_DOMAIN}}"
+      }
+    },
+    "tls": {
+      "enabled": true,
+      "server_name": "{{CDN_DOMAIN}}",
+      "utls": {
+        "enabled": true,
+        "fingerprint": "{{FINGERPRINT}}"
+      }
+    }
+  }
+}

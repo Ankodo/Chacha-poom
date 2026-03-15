@@ -1,0 +1,29 @@
+{
+  "protocol_uri": "hysteria2://{{PASSWORD}}@{{HOST}}:{{PORT}}?obfs=salamander&obfs-password={{OBFS_PASSWORD}}&sni={{SNI}}&insecure=0#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "hysteria2",
+    "server": "{{HOST}}",
+    "port": {{PORT}},
+    "password": "{{PASSWORD}}",
+    "obfs": "salamander",
+    "obfs-password": "{{OBFS_PASSWORD}}",
+    "sni": "{{SNI}}",
+    "skip-cert-verify": false
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "hysteria2",
+    "server": "{{HOST}}",
+    "server_port": {{PORT}},
+    "password": "{{PASSWORD}}",
+    "obfs": {
+      "type": "salamander",
+      "password": "{{OBFS_PASSWORD}}"
+    },
+    "tls": {
+      "enabled": true,
+      "server_name": "{{SNI}}"
+    }
+  }
+}

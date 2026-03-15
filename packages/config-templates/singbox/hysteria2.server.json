@@ -1,0 +1,22 @@
+{
+  "inbounds": [
+    {
+      "tag": "{{INBOUND_TAG}}",
+      "type": "hysteria2",
+      "listen": "::",
+      "listen_port": {{PORT}},
+      "users": [],
+      "obfs": {
+        "type": "salamander",
+        "password": "{{OBFS_PASSWORD}}"
+      },
+      "tls": {
+        "enabled": true,
+        "alpn": ["h3"],
+        "certificate_path": "{{CERT_FILE}}",
+        "key_path": "{{KEY_FILE}}"
+      },
+      "ignore_client_bandwidth": {{IGNORE_CLIENT_BANDWIDTH}}
+    }
+  ]
+}
