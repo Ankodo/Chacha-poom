@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i 's|router = APIRouter\\(prefix=\"\"/nodes\"\", tags=\\\\[\"\"nodes\"\"\\\\]\\)|router = APIRouter\\(\\)|' nodes/router.py)",
+      "Bash(sed -i 's|router = APIRouter\\(prefix=\"\"/users\"\", tags=\\\\[\"\"users\"\"\\\\]\\)|router = APIRouter\\(\\)|' users/router.py)",
+      "Bash(sed -i 's|router = APIRouter\\(prefix=\"\"/inbounds\"\", tags=\\\\[\"\"inbounds\"\"\\\\]\\)|router = APIRouter\\(\\)|' inbounds/router.py)",
+      "Bash(gh repo:*)",
+      "Bash(where gh:*)",
+      "Bash(winget install:*)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" --version)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth status)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth login --web --git-protocol https)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth login --with-token)",
+      "Bash(docker --version)",
+      "Bash(docker compose:*)",
+      "Bash(cmd.exe /c \"node --version\")",
+      "Read(//c/Users/Andro/AppData/Local/Programs/Python/Python313/**)",
+      "Read(//c/Users/Andro/**)",
+      "Bash(export PATH=\"/c/Users/Andro/AppData/Local/Programs/Python/Python313:/c/Users/Andro/AppData/Local/Programs/Python/Python313/Scripts:$PATH\")",
+      "Bash(python -m pip install --upgrade pip)",
+      "Bash(pip install:*)",
+      "Bash(python -c \":*)",
+      "Bash(python -X utf8 -c \":*)"
+    ]
+  }
+}

@@ -1,24 +1,40 @@
 {
-    # Global options
     admin off
 }
 
-# Admin panel
-panel.{$DOMAIN} {
-    reverse_proxy admin-panel:3001
+# Main panel domain — serves admin panel and API
+{$PANEL_DOMAIN:panel.localhost} {
+    # API endpoints
+    handle /api/* {
+        reverse_proxy backend:8000
+    }
+
+    # Sub-link via main domain
+    handle /sub/* {
+        reverse_proxy backend:8000
+    }
+
+    # Admin panel SPA (catch-all)
+    handle {
+        root * /srv/admin
+        file_server
+        try_files {path} /index.html
+    }
 }
 
-# API
-api.{$DOMAIN} {
-    reverse_proxy backend:3000
+# Sub-link dedicated domain
+{$SUB_DOMAIN:sub.localhost} {
+    reverse_proxy backend:8000
 }
 
-# Client site
-{$DOMAIN} {
-    reverse_proxy client-site:3002
-}
+# Client site domain (optional separate domain)
+{$CLIENT_DOMAIN:localhost} {
+    root * /srv/client
+    file_server
+    try_files {path} /index.html
 
-# Sub-link
-sub.{$DOMAIN} {
-    reverse_proxy backend:3000
+    # Also proxy API calls from client site
+    handle /api/* {
+        reverse_proxy backend:8000
+    }
 }
