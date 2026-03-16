@@ -11,7 +11,7 @@ from sqlalchemy import select
 
 from src.core.database import async_session
 from src.core.security import hash_password
-from src.models.admin import Admin
+from src.models.admin import Admin, AdminRole
 
 
 async def create_superadmin():
@@ -36,7 +36,7 @@ async def create_superadmin():
         admin = Admin(
             username=username,
             password_hash=hash_password(password),
-            role="superadmin",
+            role=AdminRole.SUPERADMIN,
             is_active=True,
         )
         db.add(admin)
