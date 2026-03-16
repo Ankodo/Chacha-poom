@@ -1,17 +1,26 @@
 {
     admin off
+    # Auto HTTPS when using real domains; HTTP-only for IP addresses
+    auto_https disable_redirects
 }
 
-# Main panel domain — serves admin panel and API
-{$PANEL_DOMAIN:panel.localhost} {
+# Main panel — serves admin panel, API, and sub-links
+# Works with both domain names and IP addresses
+:80 {
     # API endpoints
     handle /api/* {
         reverse_proxy backend:8000
     }
 
-    # Sub-link via main domain
+    # Sub-link endpoint
     handle /sub/* {
         reverse_proxy backend:8000
+    }
+
+    # Node install script
+    handle /install-node.sh {
+        root * /srv
+        file_server
     }
 
     # Admin panel SPA (catch-all)
@@ -22,19 +31,32 @@
     }
 }
 
-# Sub-link dedicated domain
-{$SUB_DOMAIN:sub.localhost} {
-    reverse_proxy backend:8000
-}
-
-# Client site domain (optional separate domain)
-{$CLIENT_DOMAIN:localhost} {
-    root * /srv/client
-    file_server
-    try_files {path} /index.html
-
-    # Also proxy API calls from client site
-    handle /api/* {
-        reverse_proxy backend:8000
-    }
-}
+# HTTPS block — activated only when PANEL_DOMAIN is a real domain (not IP)
+# Uncomment and set domains when you have DNS configured:
+#
+# {$PANEL_DOMAIN} {
+#     handle /api/* {
+#         reverse_proxy backend:8000
+#     }
+#     handle /sub/* {
+#         reverse_proxy backend:8000
+#     }
+#     handle {
+#         root * /srv/admin
+#         file_server
+#         try_files {path} /index.html
+#     }
+# }
+#
+# {$SUB_DOMAIN} {
+#     reverse_proxy backend:8000
+# }
+#
+# {$CLIENT_DOMAIN} {
+#     root * /srv/client
+#     file_server
+#     try_files {path} /index.html
+#     handle /api/* {
+#         reverse_proxy backend:8000
+#     }
+# }
