@@ -37,10 +37,13 @@ class Payment(Base):
 
     amount: Mapped[float] = mapped_column(Numeric(10, 2), nullable=False)
     currency: Mapped[str] = mapped_column(String(3), default="RUB")
-    provider: Mapped[PaymentProvider] = mapped_column(SAEnum(PaymentProvider), nullable=False)
+    provider: Mapped[PaymentProvider] = mapped_column(
+        SAEnum(PaymentProvider, values_callable=lambda x: [e.value for e in x]), nullable=False
+    )
     provider_payment_id: Mapped[str | None] = mapped_column(String(255), nullable=True)
     status: Mapped[PaymentStatus] = mapped_column(
-        SAEnum(PaymentStatus), default=PaymentStatus.PENDING
+        SAEnum(PaymentStatus, values_callable=lambda x: [e.value for e in x]),
+        default=PaymentStatus.PENDING,
     )
 
     created_at: Mapped[datetime] = mapped_column(

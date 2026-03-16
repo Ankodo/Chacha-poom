@@ -27,7 +27,10 @@ class Subscription(Base):
         UUID(as_uuid=True), ForeignKey("plans.id", ondelete="SET NULL"), nullable=True
     )
 
-    status: Mapped[SubStatus] = mapped_column(SAEnum(SubStatus), default=SubStatus.ACTIVE)
+    status: Mapped[SubStatus] = mapped_column(
+        SAEnum(SubStatus, values_callable=lambda x: [e.value for e in x]),
+        default=SubStatus.ACTIVE,
+    )
     start_date: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), default=lambda: datetime.now(UTC)
     )

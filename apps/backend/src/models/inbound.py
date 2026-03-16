@@ -39,8 +39,12 @@ class Inbound(Base):
     )
 
     # Protocol
-    protocol: Mapped[Protocol] = mapped_column(SAEnum(Protocol), nullable=False)
-    core: Mapped[Core] = mapped_column(SAEnum(Core), nullable=False)
+    protocol: Mapped[Protocol] = mapped_column(
+        SAEnum(Protocol, values_callable=lambda x: [e.value for e in x]), nullable=False
+    )
+    core: Mapped[Core] = mapped_column(
+        SAEnum(Core, values_callable=lambda x: [e.value for e in x]), nullable=False
+    )
 
     # Transport config (full JSON)
     transport_config: Mapped[dict] = mapped_column(JSON, default=dict)
@@ -56,7 +60,8 @@ class Inbound(Base):
 
     port: Mapped[int] = mapped_column(Integer, nullable=False)
     connection_mode: Mapped[ConnectionMode] = mapped_column(
-        SAEnum(ConnectionMode), default=ConnectionMode.DIRECT
+        SAEnum(ConnectionMode, values_callable=lambda x: [e.value for e in x]),
+        default=ConnectionMode.DIRECT,
     )
 
     # Tag for xray/singbox config

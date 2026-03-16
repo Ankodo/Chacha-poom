@@ -20,7 +20,10 @@ class Admin(Base):
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     username: Mapped[str] = mapped_column(String(50), unique=True, nullable=False, index=True)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
-    role: Mapped[AdminRole] = mapped_column(SAEnum(AdminRole), default=AdminRole.ADMIN)
+    role: Mapped[AdminRole] = mapped_column(
+        SAEnum(AdminRole, values_callable=lambda x: [e.value for e in x]),
+        default=AdminRole.ADMIN,
+    )
     totp_secret: Mapped[str | None] = mapped_column(String(64), nullable=True)
     is_active: Mapped[bool] = mapped_column(default=True)
     created_at: Mapped[datetime] = mapped_column(

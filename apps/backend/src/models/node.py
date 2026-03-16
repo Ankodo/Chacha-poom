@@ -52,12 +52,16 @@ class Node(Base):
     certificate_type: Mapped[str] = mapped_column(String(20), default="reality")
 
     # Status
-    status: Mapped[NodeStatus] = mapped_column(SAEnum(NodeStatus), default=NodeStatus.OFFLINE)
+    status: Mapped[NodeStatus] = mapped_column(
+        SAEnum(NodeStatus, values_callable=lambda x: [e.value for e in x]),
+        default=NodeStatus.OFFLINE,
+    )
     last_heartbeat: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     # Region
     region_profile: Mapped[RegionProfile] = mapped_column(
-        SAEnum(RegionProfile), default=RegionProfile.UNIVERSAL
+        SAEnum(RegionProfile, values_callable=lambda x: [e.value for e in x]),
+        default=RegionProfile.UNIVERSAL,
     )
 
     # Agent
