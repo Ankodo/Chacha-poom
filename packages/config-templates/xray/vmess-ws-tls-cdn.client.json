@@ -1,0 +1,63 @@
+{
+  "protocol_uri": "vmess://{{VMESS_BASE64}}",
+  "vmess_json": {
+    "v": "2",
+    "ps": "{{REMARK}}",
+    "add": "{{CDN_DOMAIN}}",
+    "port": "443",
+    "id": "{{UUID}}",
+    "aid": "0",
+    "scy": "auto",
+    "net": "ws",
+    "type": "none",
+    "host": "{{CDN_DOMAIN}}",
+    "path": "{{WS_PATH}}",
+    "tls": "tls",
+    "sni": "{{CDN_DOMAIN}}",
+    "fp": "{{FINGERPRINT}}"
+  },
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "vmess",
+    "server": "{{CDN_DOMAIN}}",
+    "port": 443,
+    "uuid": "{{UUID}}",
+    "alterId": 0,
+    "cipher": "auto",
+    "network": "ws",
+    "tls": true,
+    "udp": true,
+    "servername": "{{CDN_DOMAIN}}",
+    "ws-opts": {
+      "path": "{{WS_PATH}}",
+      "headers": {
+        "Host": "{{CDN_DOMAIN}}"
+      }
+    },
+    "client-fingerprint": "{{FINGERPRINT}}"
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "vmess",
+    "server": "{{CDN_DOMAIN}}",
+    "server_port": 443,
+    "uuid": "{{UUID}}",
+    "alter_id": 0,
+    "security": "auto",
+    "transport": {
+      "type": "ws",
+      "path": "{{WS_PATH}}",
+      "headers": {
+        "Host": "{{CDN_DOMAIN}}"
+      }
+    },
+    "tls": {
+      "enabled": true,
+      "server_name": "{{CDN_DOMAIN}}",
+      "utls": {
+        "enabled": true,
+        "fingerprint": "{{FINGERPRINT}}"
+      }
+    }
+  }
+}

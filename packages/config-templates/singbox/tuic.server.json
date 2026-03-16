@@ -1,0 +1,19 @@
+{
+  "inbounds": [
+    {
+      "tag": "{{INBOUND_TAG}}",
+      "type": "tuic",
+      "listen": "::",
+      "listen_port": {{PORT}},
+      "users": [],
+      "congestion_control": "bbr",
+      "zero_rtt_handshake": true,
+      "tls": {
+        "enabled": true,
+        "alpn": ["h3"],
+        "certificate_path": "{{CERT_FILE}}",
+        "key_path": "{{KEY_FILE}}"
+      }
+    }
+  ]
+}

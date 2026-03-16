@@ -1,0 +1,37 @@
+{
+  "protocol_uri": "trojan://{{PASSWORD}}@{{CDN_DOMAIN}}:443?type=grpc&security=tls&sni={{CDN_DOMAIN}}&fp={{FINGERPRINT}}&serviceName={{GRPC_SERVICE_NAME}}&mode=multi#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "trojan",
+    "server": "{{CDN_DOMAIN}}",
+    "port": 443,
+    "password": "{{PASSWORD}}",
+    "network": "grpc",
+    "tls": true,
+    "udp": true,
+    "sni": "{{CDN_DOMAIN}}",
+    "grpc-opts": {
+      "grpc-service-name": "{{GRPC_SERVICE_NAME}}"
+    },
+    "client-fingerprint": "{{FINGERPRINT}}"
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "trojan",
+    "server": "{{CDN_DOMAIN}}",
+    "server_port": 443,
+    "password": "{{PASSWORD}}",
+    "transport": {
+      "type": "grpc",
+      "service_name": "{{GRPC_SERVICE_NAME}}"
+    },
+    "tls": {
+      "enabled": true,
+      "server_name": "{{CDN_DOMAIN}}",
+      "utls": {
+        "enabled": true,
+        "fingerprint": "{{FINGERPRINT}}"
+      }
+    }
+  }
+}

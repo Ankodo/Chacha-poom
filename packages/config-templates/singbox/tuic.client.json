@@ -1,0 +1,31 @@
+{
+  "protocol_uri": "tuic://{{UUID}}:{{PASSWORD}}@{{HOST}}:{{PORT}}?alpn=h3&congestion_control=bbr&sni={{SNI}}#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "tuic",
+    "server": "{{HOST}}",
+    "port": {{PORT}},
+    "uuid": "{{UUID}}",
+    "password": "{{PASSWORD}}",
+    "alpn": ["h3"],
+    "congestion-controller": "bbr",
+    "reduce-rtt": true,
+    "sni": "{{SNI}}",
+    "skip-cert-verify": false
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "tuic",
+    "server": "{{HOST}}",
+    "server_port": {{PORT}},
+    "uuid": "{{UUID}}",
+    "password": "{{PASSWORD}}",
+    "congestion_control": "bbr",
+    "zero_rtt_handshake": true,
+    "tls": {
+      "enabled": true,
+      "server_name": "{{SNI}}",
+      "alpn": ["h3"]
+    }
+  }
+}

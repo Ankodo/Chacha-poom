@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Plus, Server, Cpu, MemoryStick, Activity } from "lucide-react";
 import api from "@/lib/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import MetricsPanel from "@/components/MetricsPanel";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -245,10 +246,10 @@ export default function NodeDetail() {
         </CardContent>
       </Card>
 
-      {/* Metrics section */}
+      {/* Quick Metrics Overview */}
       <Card>
         <CardHeader>
-          <CardTitle>Metrics</CardTitle>
+          <CardTitle>Quick Metrics</CardTitle>
         </CardHeader>
         <CardContent className="space-y-5">
           <MetricBar label="CPU Usage" value={metrics.cpu} icon={Cpu} />
@@ -256,6 +257,9 @@ export default function NodeDetail() {
           <MetricBar label="Bandwidth" value={metrics.bandwidth} icon={Activity} />
         </CardContent>
       </Card>
+
+      {/* Detailed Metrics Panel */}
+      {id && <MetricsPanel nodeId={id} />}
     </div>
   );
 }

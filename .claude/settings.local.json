@@ -21,7 +21,8 @@
       "Bash(python -m pip install --upgrade pip)",
       "Bash(pip install:*)",
       "Bash(python -c \":*)",
-      "Bash(python -X utf8 -c \":*)"
+      "Bash(python -X utf8 -c \":*)",
+      "Bash(python -c \"import json; json.load\\(open\\(''xray/vless-reality-xtls.server.json''\\)\\)\")"
     ]
   }
 }

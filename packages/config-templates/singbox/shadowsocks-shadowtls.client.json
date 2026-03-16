@@ -1,0 +1,44 @@
+{
+  "protocol_uri": "ss://{{SS_METHOD_PASSWORD_BASE64}}@127.0.0.1:0?shadow-tls={{SHADOWTLS_CONFIG_BASE64}}#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "ss",
+    "server": "{{HOST}}",
+    "port": {{PORT}},
+    "cipher": "2022-blake3-aes-128-gcm",
+    "password": "{{SS_SERVER_PASSWORD}}:{{SS_USER_PASSWORD}}",
+    "udp": true,
+    "plugin": "shadow-tls",
+    "plugin-opts": {
+      "host": "{{SHADOWTLS_HANDSHAKE_SERVER}}",
+      "password": "{{SHADOWTLS_PASSWORD}}",
+      "version": 3
+    }
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "shadowsocks",
+    "server": "{{HOST}}",
+    "server_port": {{PORT}},
+    "method": "2022-blake3-aes-128-gcm",
+    "password": "{{SS_SERVER_PASSWORD}}:{{SS_USER_PASSWORD}}",
+    "multiplex": {
+      "enabled": true,
+      "protocol": "h2mux",
+      "max_streams": 8
+    },
+    "detour": "{{REMARK}}-shadowtls",
+    "_shadowtls_outbound": {
+      "tag": "{{REMARK}}-shadowtls",
+      "type": "shadowtls",
+      "server": "{{HOST}}",
+      "server_port": {{PORT}},
+      "version": 3,
+      "password": "{{SHADOWTLS_PASSWORD}}",
+      "tls": {
+        "enabled": true,
+        "server_name": "{{SHADOWTLS_HANDSHAKE_SERVER}}"
+      }
+    }
+  }
+}

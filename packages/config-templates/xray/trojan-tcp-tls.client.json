@@ -1,0 +1,29 @@
+{
+  "protocol_uri": "trojan://{{PASSWORD}}@{{HOST}}:{{PORT}}?type=tcp&security=tls&sni={{SNI}}&fp={{FINGERPRINT}}#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "trojan",
+    "server": "{{HOST}}",
+    "port": {{PORT}},
+    "password": "{{PASSWORD}}",
+    "tls": true,
+    "udp": true,
+    "sni": "{{SNI}}",
+    "client-fingerprint": "{{FINGERPRINT}}"
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "trojan",
+    "server": "{{HOST}}",
+    "server_port": {{PORT}},
+    "password": "{{PASSWORD}}",
+    "tls": {
+      "enabled": true,
+      "server_name": "{{SNI}}",
+      "utls": {
+        "enabled": true,
+        "fingerprint": "{{FINGERPRINT}}"
+      }
+    }
+  }
+}

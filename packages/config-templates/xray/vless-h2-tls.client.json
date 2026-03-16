@@ -1,0 +1,40 @@
+{
+  "protocol_uri": "vless://{{UUID}}@{{CDN_DOMAIN}}:443?type=http&security=tls&sni={{CDN_DOMAIN}}&fp={{FINGERPRINT}}&host={{CDN_DOMAIN}}&path={{H2_PATH}}#{{REMARK}}",
+  "clash": {
+    "name": "{{REMARK}}",
+    "type": "vless",
+    "server": "{{CDN_DOMAIN}}",
+    "port": 443,
+    "uuid": "{{UUID}}",
+    "network": "h2",
+    "tls": true,
+    "udp": true,
+    "servername": "{{CDN_DOMAIN}}",
+    "h2-opts": {
+      "host": ["{{CDN_DOMAIN}}"],
+      "path": "{{H2_PATH}}"
+    },
+    "client-fingerprint": "{{FINGERPRINT}}"
+  },
+  "singbox": {
+    "tag": "{{REMARK}}",
+    "type": "vless",
+    "server": "{{CDN_DOMAIN}}",
+    "server_port": 443,
+    "uuid": "{{UUID}}",
+    "flow": "",
+    "transport": {
+      "type": "http",
+      "host": ["{{CDN_DOMAIN}}"],
+      "path": "{{H2_PATH}}"
+    },
+    "tls": {
+      "enabled": true,
+      "server_name": "{{CDN_DOMAIN}}",
+      "utls": {
+        "enabled": true,
+        "fingerprint": "{{FINGERPRINT}}"
+      }
+    }
+  }
+}

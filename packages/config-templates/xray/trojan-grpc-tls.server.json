@@ -1,0 +1,40 @@
+{
+  "inbounds": [
+    {
+      "tag": "{{INBOUND_TAG}}",
+      "listen": "0.0.0.0",
+      "port": {{PORT}},
+      "protocol": "trojan",
+      "settings": {
+        "clients": [],
+        "fallbacks": [
+          {
+            "dest": "{{FALLBACK_PORT}}"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "{{CERT_FILE}}",
+              "keyFile": "{{KEY_FILE}}"
+            }
+          ],
+          "alpn": ["h2"],
+          "fingerprint": "{{FINGERPRINT}}"
+        },
+        "grpcSettings": {
+          "serviceName": "{{GRPC_SERVICE_NAME}}",
+          "multiMode": true
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      }
+    }
+  ]
+}
