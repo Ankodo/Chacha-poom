@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from src.models.inbound import Inbound
-from src.models.node import Node
+from src.models.node import Node, NodeStatus
 from src.models.user import User
 from src.models.user_access import UserAccess
 from src.modules.configs.region_profiles import CONFIG_MATRIX, REGION_PROFILES
@@ -255,7 +255,7 @@ class ConfigService:
         nodes_result = await db.execute(
             select(Node)
             .options(selectinload(Node.inbounds))
-            .where(Node.status.in_(["online", "degraded"]))
+            .where(Node.status.in_([NodeStatus.ONLINE, NodeStatus.DEGRADED]))
         )
         nodes = nodes_result.scalars().all()
 

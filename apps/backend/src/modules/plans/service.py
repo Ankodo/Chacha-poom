@@ -30,7 +30,7 @@ class PlanService:
     async def create_plan(db: AsyncSession, data: PlanCreate) -> Plan:
         plan = Plan(**data.model_dump())
         db.add(plan)
-        await db.commit()
+        await db.flush()
         await db.refresh(plan)
         return plan
 
@@ -39,7 +39,7 @@ class PlanService:
         plan = await PlanService.get_plan(db, plan_id)
         for key, value in data.model_dump(exclude_unset=True).items():
             setattr(plan, key, value)
-        await db.commit()
+        await db.flush()
         await db.refresh(plan)
         return plan
 
@@ -47,4 +47,4 @@ class PlanService:
     async def delete_plan(db: AsyncSession, plan_id: uuid.UUID) -> None:
         plan = await PlanService.get_plan(db, plan_id)
         await db.delete(plan)
-        await db.commit()
+        await db.flush()

@@ -8,7 +8,7 @@ from sqlalchemy.orm import selectinload
 
 from src.core.logging import logger
 from src.core.security import create_access_token
-from src.models.node import Node
+from src.models.node import Node, NodeStatus
 from src.models.payment import Payment, PaymentProvider
 from src.models.plan import Plan
 from src.models.subscription import Subscription
@@ -109,7 +109,7 @@ class ClientService:
         )
         access_rules = access_result.scalars().all()
 
-        query = select(Node).where(Node.status.in_(["online", "degraded"]))
+        query = select(Node).where(Node.status.in_([NodeStatus.ONLINE, NodeStatus.DEGRADED]))
 
         if access_rules:
             node_ids = [r.node_id for r in access_rules if r.node_id]
